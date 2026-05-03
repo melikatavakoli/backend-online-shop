@@ -160,3 +160,21 @@ class UserListView(ListAPIView):
             return User.objects.filter(role=RoleType.CUSTOMER)
         else:
             return User.objects.filter(id=user.id)
+
+
+class UserListView(ListAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = UserListSerializer
+    queryset = User.objects.all()
+    pagination_class = CustomLimitOffsetPagination
+    filter_backends = (DjangoFilterBackend, OrderingFilter, SearchFilter)
+    filterset_fields = ("role",)
+    search_fields = ("first_name", "last_name", "mobile")
+    ordering = ("-created_at",)
+    ordering_fields = ("first_name", "created_at")
+
+    @extend_schema(
+        responses=UserListSerializer(many=True),
+    )
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
