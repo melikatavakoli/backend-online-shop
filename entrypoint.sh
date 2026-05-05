@@ -1,7 +1,12 @@
 #!/bin/sh
 set -e
 
-python manage.py makemigrations
-python manage.py migrate
+echo "Waiting 10 seconds for database to be ready..."
+sleep 10
 
-exec daphne -b 0.0.0.0 -p 8000 config.asgi:application
+echo "Running migrations..."
+python manage.py makemigrations --noinput
+python manage.py migrate --noinput
+
+echo "Starting server..."
+exec daphne -b 0.0.0.0 -p 8001 config.asgi:application
