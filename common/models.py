@@ -6,11 +6,10 @@ from django.db import models
 from django.db.models.deletion import ProtectedError
 from django.utils import timezone
 
-from common.format import common_datetime_str
-from common.middleware import get_current_user
+from common.managers import SoftDeleteManager
 
-from .managers import SoftDeleteManager
-
+from .format import common_datetime_str
+from .middleware import get_current_user
 
 class BaseModel(models.Model):
     id = models.UUIDField(default=uuid.uuid4, primary_key=True, editable=False)
@@ -19,7 +18,6 @@ class BaseModel(models.Model):
     deleted_at = models.DateTimeField(null=True, blank=True)
     is_deleted = models.BooleanField(default=False)
     is_active = models.BooleanField(default=False)
-    
     created_by = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         null=True,
@@ -34,7 +32,6 @@ class BaseModel(models.Model):
         on_delete=models.SET_NULL,
         related_name="updated_%(app_label)s_%(class)s_set",
     )
-
     objects = SoftDeleteManager(alive_only=True)
     all_objects = SoftDeleteManager(alive_only=None)
     deleted_objects = SoftDeleteManager(alive_only=False)
@@ -99,8 +96,7 @@ class BaseModel(models.Model):
     def restore(self):
         if not self.is_deleted:
             return
-        
-        # Restore related objects
+    
         for rel in self._meta.related_objects:
             if getattr(rel, "on_delete", None) is not models.CASCADE:
                 continue
@@ -152,7 +148,6 @@ class BaseModel(models.Model):
                     related.all().update(**{field_name: None})
                 continue
             
-            # CASCADE
             if rel.one_to_one:
                 try:
                     related.delete(using=using)
