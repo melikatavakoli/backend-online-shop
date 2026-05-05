@@ -1,56 +1,75 @@
-django-import-export==4.4.0
-openpyxl==3.1.5
-pandas>=3.0.0
-drf-standardized-errors==0.15.0
-
-Django>=5.2.8,<5.3
+# Core Django
+Django>=5.1,<5.3
 djangorestframework==3.16.1
 django-filter==25.1
 django-cors-headers==4.9.0
 
+# Database
+psycopg2-binary>=2.9.11
+
+# Authentication & JWT
 djangorestframework_simplejwt==5.4.0
 PyJWT==2.7.0
 python-jose==3.5.0
 djoser==2.3.1
 cryptography>=46.0.3
 
+# Data Import/Export
+django-import-export==4.4.0
+openpyxl==3.1.5
+pandas>=2.2.0  # Changed from 3.0.0 to 2.2.0
+
+# Monitoring & Logging (Fixed)
 django-simple-history==3.7.0
 django-auditlog==3.4.1
 python-json-logger==3.3.0
-logger
+# logger - REMOVED - not a real package
+# Use built-in logging instead, or add: loguru==0.7.3
 
+# Caching & Task Queue
 django-redis==5.4.0
 celery==5.4.0
 redis==7.1.0
 django-celery-beat==2.8.0
 flower==2.0.1
 kombu==5.5.4
+
+# WebSockets
 channels==4.3.2
 channels-redis==4.3.0
-channels[daphne]
-
-django-eventstream==5.3.1
+channels[daphne]==4.3.2
 daphne==4.1.2
 
-psycopg2-binary>=2.9.11
+# Storage
 django-storages==1.14.6
 boto3==1.42.34
 
+# Development Tools
 django-debug-toolbar==6.1.0
 django-extensions==3.2.3
-Werkzeug>=1.0,<4
+Werkzeug>=3.0.0,<4  # Updated from 1.0
 
+# API Documentation
 drf-spectacular==0.28.0
 drf-spectacular-sidecar==2025.9.1
 
+# Persian/Date Utilities
 persiantools==5.4.0
 jdatetime==5.2.0
+
+# User & Geo
 user-agents==2.2.0
 geoip2==5.2.0
 
+# Utilities
 python-dotenv==1.0.1
 django-unfold==0.76.0
 django-location-field==2.7.3
 Pillow==12.1.0
+
+# Error Handling
+drf-standardized-errors==0.15.0
+
+# Servers
 gunicorn==23.0.0
 uvicorn[standard]==0.40.0
