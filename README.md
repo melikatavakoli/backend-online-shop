@@ -42,8 +42,7 @@ project
 ├── config          # Global settings, WSGI/ASGI config
 ├── common          # Shared utilities, base classes, mixins
 │
-├── users           # Auth & user management
-├── profiles        # Extended profiles
+├── core           # Auth & user management
 ├── address         # Location data
 │
 ├── product         # Product catalog
@@ -52,9 +51,6 @@ project
 ├── invoice         # Billing & invoices
 ├── transaction     # Payment transactions
 │
-├── course          # Learning content
-├── lives           # Live sessions
-│
 ├── blog            # Blog system
 ├── notifications   # Push/in-app notifications
 │
@@ -62,7 +58,6 @@ project
 ├── tickets         # Support tickets
 │
 ├── dashboard       # Admin analytics
-└── iqplus          # IQPlus integration
 ```
 
 **Each app follows a consistent pattern:**
