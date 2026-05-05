@@ -9,7 +9,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
 
-from base.paginations import CustomLimitOffsetPagination
+from common.paginations import CustomLimitOffsetPagination
 from core.serializers import (
     ChangePasswordSerializer,
     LoginOtpSerializer,
