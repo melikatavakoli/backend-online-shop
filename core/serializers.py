@@ -8,7 +8,7 @@ from django.utils import timezone
 from django_redis import get_redis_connection
 from rest_framework import serializers
 
-from base.serializers import BaseModelSerializer
+from common.serializers import BaseModelSerializer
 from core.tasks import send_verification_sms
 from core.types import RoleType, StatusType
 from core.utils import record_login_attempt
