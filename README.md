@@ -1,3 +1,5 @@
+---
+
 <div align="center">
 
 # 🚀 Modular Django Backend
@@ -32,7 +34,7 @@ project
 ├── config          # Global settings, WSGI/ASGI config
 ├── common          # Shared utilities, base classes, mixins
 │
-├── core           # Auth & user management
+├── core            # Auth & user management
 ├── address         # Location data
 │
 ├── product         # Product catalog
@@ -90,17 +92,19 @@ That's it. Your backend is live.
 
 ---
 
-## ⚡ Docker with Custom Pip Mirror
+## ⚡ Docker: Using a Pip Mirror (Faster Installs)
 
-Need faster installs or behind restricted networks? Pass a pip mirror:
+For faster package installation, you can use a **custom pip mirror** — especially useful in regions with slow PyPI access or behind restricted networks.
+
+### 🔧 Build with a mirror from the CLI
 
 ```bash
 docker build \
-  --build-arg PIP_INDEX_URL=https://pypi.tuna.tsinghua.edu.cn/simple \
+  --build-arg PIP_INDEX_URL=https://pypi.iranrepo.ir/simple \
   -t my-django-backend .
 ```
 
-Or in `docker-compose.yml`:
+### 🚀 Or in `docker-compose.yml`
 
 ```yaml
 services:
@@ -108,10 +112,17 @@ services:
     build:
       context: .
       args:
-        PIP_INDEX_URL: https://pypi.tuna.tsinghua.edu.cn/simple
+        PIP_INDEX_URL: https://pypi.iranrepo.ir/simple
 ```
 
-> Falls back to official PyPI if not specified.
+### ✅ How it works
+
+| If you... | Result |
+|-----------|--------|
+| Don't set `PIP_INDEX_URL` | Falls back to default PyPI |
+| Set a custom mirror URL | All `pip install` commands use your mirror → **much faster** ✅ |
+
+> 💡 **Pro tip:** You can use any pip-compatible mirror — domestic mirrors, Tsinghua, Aliyun, IranRepo, etc. This dramatically speeds up Docker builds in restricted network environments.
 
 ---
 
@@ -191,17 +202,6 @@ Available fixtures for most domains.
 
 ---
 
-## 🧠 Design Philosophy
-
-| Principle | Implementation |
-|-----------|----------------|
-| **Business logic** | Lives in `services/` or `tasks/`, not views |
-| **Type safety** | `types/` for enums & constants |
-| **Reusability** | `common/` for shared utilities (pagination, base views, permissions) |
-| **Environment config** | Settings split by environment (dev/prod/local) |
-
----
-
 ## 📌 Project Status
 
 | Area | Status |
@@ -221,75 +221,11 @@ Available fixtures for most domains.
   <img src="https://img.shields.io/badge/Auth-JWT%20%7C%20OTP-orange?style=flat-square" />
 </div>
 
-**Backend developer** specializing in:
-
-- 🚀 **Django & FastAPI** — scalable APIs
-- 💬 **Realtime systems** — WebSockets, chat, live communication
-- 🔐 **Authentication** — OTP, JWT, token-based security
-- 💰 **Financial modules** — billing, invoicing, wallet systems
-- 🐳 **DevOps** — Docker, Linux, production deployments
-- 🤖 **AI & LLM** — collaboration on intelligent systems
-
-> **Passionate about clean, maintainable, and scalable code.**
-
 ---
 
-Here's the updated English section about using pip mirrors for Docker:
+## 🤝 Contributing
 
----
-
-## ⚡ Docker: Using a Pip Mirror (Faster Installs)
-
-In the Docker setup, I've added support for using a **pip mirror** to speed up package installation  
-or to work better behind restricted networks (e.g. inside Iran or locked-down environments).
-
-You can pass a custom **`PIP_INDEX_URL`** as a build argument.
-
-### 🔧 In `Dockerfile`
-
-```dockerfile
-# Default to normal PyPI, but allow override via build args
-ARG PIP_INDEX_URL=https://pypi.org/simple
-ENV PIP_INDEX_URL=${PIP_INDEX_URL}
-
-# Later in the build step:
-RUN pip install --no-cache-dir -r requirements.txt
-```
-
-### 🚀 Using it with `docker compose`
-
-```yaml
-services:
-  web:
-    build:
-      context: .
-      args:
-        PIP_INDEX_URL: https://pypi.tuna.tsinghua.edu.cn/simple
-```
-
-### 🖥 From the CLI
-
-```bash
-docker build \
-  --build-arg PIP_INDEX_URL=https://pypi.tuna.tsinghua.edu.cn/simple \
-  -t my-django-backend .
-```
-
-### ✅ How It Works
-
-| If you... | Result |
-|-----------|--------|
-| Don't set `PIP_INDEX_URL` | Falls back to normal PyPI index |
-| Set a custom mirror URL | All `pip install` calls use your mirror → **much faster** ✅ |
-
-> 💡 **Why use this?**  
-> - Faster package downloads (especially useful in regions with slow PyPI access)  
-> - Works behind corporate firewalls or restricted networks  
-> - Great for Iranian developers (using domestic mirrors) or Chinese mirrors like Tsinghua, Aliyun, etc.
-
----
-
-**I've implemented this to make Docker builds faster and more reliable regardless of your network location.** 🚀
+Issues and pull requests are welcome! Feel free to open an issue to discuss features or bugs.
 
 ---
 
@@ -301,3 +237,6 @@ docker build \
 
 </div>
 
+---
+
+That's the complete README in English, clean and ready to use!
