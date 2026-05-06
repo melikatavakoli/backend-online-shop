@@ -10,16 +10,6 @@ because large codebases should stay maintainable.
 
 ---
 
-[![Python](https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white)]()
-[![Django](https://img.shields.io/badge/Django-5.x-0C4B33?style=for-the-badge&logo=django&logoColor=white)]()
-[![DRF](https://img.shields.io/badge/DRF-API-red?style=for-the-badge)]()
-[![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=for-the-badge&logo=docker&logoColor=white)]()
-[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)]()
-
-</div>
-
----
-
 ## 📌 About This Project
 
 This backend is built for **real-world, growing projects** with:
