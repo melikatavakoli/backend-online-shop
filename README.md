@@ -60,19 +60,6 @@ project
 ├── dashboard       # Admin analytics
 ```
 
-**Each app follows a consistent pattern:**
-```
-app/
-├── models/
-├── serializers/
-├── views/
-├── urls/
-├── tasks/
-├── signals/
-├── tests/
-└── types/          # Enums & typed constants
-```
-
 ---
 
 ## 🛠 Tech Stack
