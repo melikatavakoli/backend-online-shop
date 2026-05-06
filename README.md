@@ -2,9 +2,8 @@
 
 # 🚀 Modular Django Backend
 
-A production-ready, modular Django 5 backend built for **real-world scalability**.  
-Designed with **clean architecture**, **async processing**, **WebSockets**, and **Docker** —  
-because large codebases should stay maintainable.
+A **production-ready** Django 5 backend built for **real-world scalability**.  
+Designed with clean architecture, async processing, WebSockets, and Docker.
 
 ⚠️ **Active Development** — APIs and structure may evolve.
 
@@ -23,34 +22,33 @@ This backend handles **real-world, growing projects** with confidence:
 | ✅ Clean, maintainable code | Designed to scale |
 
 Perfect for e-commerce platforms, learning management systems, or real-time chat apps.
+
 ---
 
 ## 🧱 Architecture at a Glance
 
 ```
-
 project
 │
-├── config          # Global settings, WSGI/ASGI config
-├── common          # Shared utilities, base classes, mixins
+├── config              # Global settings, WSGI/ASGI config
+├── common              # Shared utilities, base classes, mixins
 │
-├── core           # Auth & user management
-├── address         # Location data
+├── core                # Auth & user management
+├── address             # Location data
 │
-├── product         # Product catalog
-├── cart            # Shopping cart
-├── order           # Order processing
-├── invoice         # Billing & invoices
-├── transaction     # Payment transactions
+├── product             # Product catalog
+├── cart                # Shopping cart
+├── order               # Order processing
+├── invoice             # Billing & invoices
+├── transaction         # Payment transactions
 │
-├── blog            # Blog system
-├── notifications   # Push/in-app notifications
+├── blog                # Blog system
+├── notifications       # Push/in-app notifications
 │
-├── chat            # Real-time WebSocket chat
-├── tickets         # Support tickets
+├── chat                # Real-time WebSocket chat
+├── tickets             # Support tickets
 │
-├── dashboard       # Admin analytics
-
+├── dashboard           # Admin analytics
 ```
 
 ---
@@ -237,10 +235,6 @@ Available fixtures for most domains.
 
 ---
 
-Here's the updated English section about using pip mirrors for Docker:
-
----
-
 ## ⚡ Docker: Using a Pip Mirror (Faster Installs)
 
 In the Docker setup, I've added support for using a **pip mirror** to speed up package installation  
@@ -303,3 +297,6 @@ docker build \
 🐛 **Issues & PRs** welcome — let's build better backends together.
 
 </div>
+```
+
+Just copy the entire block above and paste it into your `README.md` file. The formatting is clean, consistent, and ready to go!
