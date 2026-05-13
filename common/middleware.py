@@ -36,5 +36,3 @@ class CurrentUserMiddleware:
     def __call__(self, request):
         _local.user = request.user
         return self.get_response(request)
-        # _local.user = request.user if request.user.is_authenticated else None
-        # return self.get_response(request)
