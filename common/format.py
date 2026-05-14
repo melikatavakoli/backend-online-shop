@@ -1,6 +1,5 @@
 import os
 from datetime import datetime
-
 from django.utils import timezone
 from django.utils.text import slugify
 
@@ -12,7 +11,6 @@ def common_user_str(user):
 
 
 def _localize_datetime(dt):
-    """Convert datetime to local timezone."""
     if not dt:
         return None
     
@@ -40,27 +38,15 @@ def file_name_datetime_str():
 
 
 def upload_to_by_date(instance, filename):
-    now = datetime.now()
-    timestamp = now.strftime("%Y%m%d%H%M%S")
-    ext = os.path.splitext(filename)[1]
-    return os.path.join(f"storage/{now.year}/", f"{timestamp}{ext}")
+    today = datetime.now()
+    timestamp = today.strftime("%Y%m%d%H%M%S")
+    file_extension = os.path.splitext(filename)[1]
+    new_filename = f"{timestamp}{file_extension}"
+    return os.path.join(f"storage/{today.year}/", new_filename)
 
 
 def calculate_age(birth_date):
     if not birth_date:
         return None
-    
     today = timezone.localdate()
     return today.year - birth_date.year - int((today.month, today.day) < (birth_date.month, birth_date.day))
-
-
-def generate_slug(title, model, pk=None):
-    base_slug = slugify(title, allow_unicode=True)
-    slug = base_slug
-    counter = 2
-    
-    while model.objects.filter(slug=slug).exclude(pk=pk).exists():
-        slug = f"{base_slug}-{counter}"
-        counter += 1
-    
-    return slug

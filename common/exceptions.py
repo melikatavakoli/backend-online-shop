@@ -1,6 +1,4 @@
 import logging
-import traceback
-
 from django.conf import settings
 from rest_framework import status
 from rest_framework.response import Response
@@ -10,7 +8,6 @@ logger = logging.getLogger(__name__)
 
 
 def _extract_messages(error_data):
-    """Extract error messages from DRF error format."""
     if isinstance(error_data, (str, Exception)):
         return [str(error_data)]
     
@@ -29,12 +26,10 @@ def _extract_messages(error_data):
         for item in error_data:
             messages.extend(_extract_messages(item))
         return messages
-    
     return [str(error_data)]
 
 
 def _format_response(error_messages, status_code):
-    """Format error response in standard structure."""
     return {
         "success": False,
         "error": error_messages[0] if error_messages else "An error occurred",
@@ -44,9 +39,7 @@ def _format_response(error_messages, status_code):
 
 
 def exception_handler(exc, context):
-    """Custom DRF exception handler."""
     response = drf_exception_handler(exc, context)
-    
     if not response or response.status_code >= 500:
         request = context.get("request")
         logger.exception(
@@ -56,18 +49,14 @@ def exception_handler(exc, context):
                 "method": getattr(request, "method", None),
             }
         )
-        
         if settings.DEBUG:
             raise
-  
-
     if response and response.status_code < 500:
         messages = _extract_messages(response.data)
         return Response(
             _format_response(messages, response.status_code),
             status=response.status_code
         )
-
     return Response(
         _format_response(["Internal server error"], status.HTTP_500_INTERNAL_SERVER_ERROR),
         status=status.HTTP_500_INTERNAL_SERVER_ERROR
